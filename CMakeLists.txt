@@ -15,7 +15,7 @@ add_executable(puzzles ${sources})
 target_compile_options(puzzles PUBLIC -std=c++1y -Wall -Wfloat-conversion)
 
 # This allows to include files relative to the root of the src directory with a <> pair
-target_include_directories(puzzles PUBLIC src/)
+# target_include_directories(puzzles PUBLIC src/)
 
 ###############################################################################
 ## dependencies ###############################################################
