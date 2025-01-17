@@ -7,7 +7,7 @@ namespace puzzles {
 namespace arrays {
 
 
-int second_largest(std::vector<int> &arr);
+int second_largest(const std::vector<int>& arr);
 
 }  // namespace arrays
 }  // namespace puzzles

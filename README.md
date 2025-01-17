@@ -1,2 +1,3 @@
 # puzzles-cpp
-C++ Puzzles 
+
+C++ Puzzles
