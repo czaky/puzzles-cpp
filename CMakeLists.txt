@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(puzzles)
 
-file(GLOB_RECURSE sources  src/*.cpp src/*.h)
-file(GLOB_RECURSE tests    src/*-test.cpp)
+file(GLOB_RECURSE sources  *.cpp *.h)
+file(GLOB_RECURSE tests    *-test.cpp)
 list(REMOVE_ITEM sources ${tests})
 
 ###############################################################################
