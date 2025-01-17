@@ -2,7 +2,12 @@
 
 #include <vector>
 
-
+/**
+ * @brief Return the second largest value from the vector `arr`.
+ *
+ * @param arr
+ * @return int
+ */
 int second_largest(std::vector<int> &arr) {
     if (arr.size() < 2) return -1;
     int f = max(arr[0], arr[1]);
