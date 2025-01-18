@@ -25,19 +25,19 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang]
+        cc: [gcc, clang]
         include:
           - os: ubuntu-latest
-            c_compiler: gcc
+            cc: gcc
             cxx: g++
           - os: ubuntu-latest
-            c_compiler: clang
+            cc: clang
             cxx: clang++
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Cache CMake dependency build objects
+    - name: Cache CMake build
       uses: actions/cache@v4
       env:
         cache-name: cache-cmake-dependency-builds
@@ -45,11 +45,11 @@ jobs:
         # CMake cache is at ${{github.workspace}}/build/_deps but we only care about the folders ending in -build or -subbuild
         path: ${{github.workspace}}/build/
         # Cache hash is dependent on CMakeLists files anywhere as these can change what's in the cache, as well as cmake modules files
-        key: ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cxx }}-${{ hashFiles('**/CMakeLists.txt', 'cmake/**') }}
+        key: ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cc }}-${{ hashFiles('**/CMakeLists.txt', 'cmake/**') }}
         # it's acceptable to reuse caches for different CMakeLists content if exact match is not available
         # as long as the OS and Compiler match exactly
         restore-keys: |
-          ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cxx }}-
+          ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cc }}-
 
     - uses: Bacondish2023/setup-googletest@v1
 
@@ -66,7 +66,7 @@ jobs:
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
         -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+        -DCMAKE_cc=${{ matrix.cc }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
 
