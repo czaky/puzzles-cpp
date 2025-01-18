@@ -51,6 +51,14 @@ std::vector<int> leaders(const std::vector<int>& a) {
     return leaders;
 }
 
+/**
+ * @brief Given an array of 0, 1, and 2, sort it in ascending order.
+ *
+ * The approach here will count the occurrence of each
+ * and will then fill the array with corresponding counts.
+ *
+ * @param a vector of integers
+ */
 void sort012(std::vector<int>& a) {
     int zeros = 0;
     int ones = 0;
@@ -63,6 +71,15 @@ void sort012(std::vector<int>& a) {
     std::fill(a.begin() + zeros + ones, a.end(), 2);
 }
 
+/**
+ * @brief Given an array of 0, 1, and 2, sort it in ascending order.
+ *
+ * The approach here uses two pointers `l`, and `h` to demarcate
+ * the line between zeros and ones, and the line between ones and twos.
+ *
+ *
+ * @param a vector of integers
+ */
 void sort_dutch_flag(std::vector<int>& a) {
         int l = 0;
         int h = a.size();
