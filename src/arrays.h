@@ -10,6 +10,9 @@ int second_largest(const std::vector<int>& arr);
 
 std::vector<int> leaders(const std::vector<int>& a);
 
+void sort012(std::vector<int>& a);
+
+void sort_dutch_flag(std::vector<int>& a);
 }  // namespace arrays
 }  // namespace puzzles
 

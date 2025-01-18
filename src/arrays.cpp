@@ -51,5 +51,27 @@ std::vector<int> leaders(const std::vector<int>& a) {
     return leaders;
 }
 
+void sort012(std::vector<int>& a) {
+    int zeros = 0;
+    int ones = 0;
+    for (int e: a) {
+        if (e == 0) ++zeros;
+        if (e == 1) ++ones;
+    }
+    std::fill(a.begin(), a.begin() + zeros, 0);
+    std::fill(a.begin() + zeros, a.begin() + zeros + ones, 1);
+    std::fill(a.begin() + zeros + ones, a.end(), 2);
+}
+
+void sort_dutch_flag(std::vector<int>& a) {
+        int l = 0;
+        int h = a.size();
+
+        for (int m = 0; m < h; m++) {
+            while (a[m] == 2 && m < h) std::swap(a[m], a[--h]);
+            if (a[m] == 0) std::swap(a[l++], a[m]);
+        }
+}
+
 }  // namespace arrays
 }  // namespace puzzles
