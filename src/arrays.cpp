@@ -1,6 +1,7 @@
 #include "arrays.h"
 
 #include <vector>
+#include <algorithm>
 
 namespace puzzles {
 namespace arrays {
@@ -25,6 +26,29 @@ int second_largest(const std::vector<int>& arr) {
 
     }
     return f == s ? -1 : s;
+}
+
+/**
+ * @brief Return the leading values to the left
+ *
+ * A leading value is larger or equal to all values to the right.
+ *
+ * @param a - vector
+ * @return std::vector<int> representing the leading values
+ */
+std::vector<int> leaders(const std::vector<int>& a) {
+    int n = a.size();
+    std::vector<int> leaders;
+    if (n == 0) return leaders;
+    leaders.reserve(n);
+    leaders.push_back(a.back());
+    for (int i = n - 2; i >= 0; i--) {
+        if (a[i] >= leaders.back()) {
+            leaders.push_back(a[i]);
+        }
+    }
+    reverse(leaders.begin(), leaders.end());
+    return leaders;
 }
 
 }  // namespace arrays

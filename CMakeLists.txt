@@ -46,6 +46,7 @@ enable_testing()
 # People who might want to build the project to use it should not be required
 # to install testing dependencies.
 find_package(GTest)
+find_package(GMock)
 
 if(GTEST_FOUND)
   include(GoogleTest)
