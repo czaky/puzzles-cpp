@@ -42,14 +42,9 @@ jobs:
       env:
         cache-name: cache-cmake-dependency-builds
       with:
-        # CMake cache is at ${{github.workspace}}/build/_deps but we only care about the folders ending in -build or -subbuild
         path: ${{github.workspace}}/build/
         # Cache hash is dependent on CMakeLists files anywhere as these can change what's in the cache, as well as cmake modules files
         key: ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cc }}-${{ hashFiles('**/CMakeLists.txt', 'cmake/**') }}
-        # it's acceptable to reuse caches for different CMakeLists content if exact match is not available
-        # as long as the OS and Compiler match exactly
-        restore-keys: |
-          ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cc }}-
 
     - uses: Bacondish2023/setup-googletest@v1
 
