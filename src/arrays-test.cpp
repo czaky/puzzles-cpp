@@ -64,5 +64,20 @@ TEST(ArraysTests, sort_dutch_flag) {
   EXPECT_THAT(_sort_dutch_flag({}), ElementsAre());
 }
 
+std::vector<int> __missing_and_repeating(std::vector<int> v) {
+  return missing_and_repeating(v);
+}
+
+TEST(ArraysTests, _missing_and_repeating) {
+  EXPECT_THAT(__missing_and_repeating({1, 2, 4, 1}), ElementsAre(3, 1));
+  EXPECT_THAT(__missing_and_repeating({2, 2, 1, 4}), ElementsAre(3, 2));
+
+  EXPECT_THAT(__missing_and_repeating({3, 4, 2, 2}), ElementsAre(1, 2));
+  EXPECT_THAT(__missing_and_repeating({2, 2, 4, 1}), ElementsAre(3, 2));
+
+  EXPECT_THAT(__missing_and_repeating({2, 2}), ElementsAre(1, 2));
+  EXPECT_THAT(__missing_and_repeating({1, 1}), ElementsAre(2, 1));
+}
+
 }  // namespace arrays
 }  // namespace puzzles

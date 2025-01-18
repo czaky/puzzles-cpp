@@ -90,5 +90,27 @@ void sort_dutch_flag(std::vector<int>& a) {
         }
 }
 
+std::vector<int> missing_and_repeating(std::vector<int>& a) {
+    int n = a.size();
+    int duplicate = -1;
+    for (int i=0; i < n; ++i) {
+        int e = abs(a[i]);
+        if (a[e - 1] < 0) {
+            duplicate = e;
+        } else {
+            a[e - 1] = -a[e - 1];
+        }
+    }
+    int missing = -1;
+    for (int i = 0; i<n; ++i) {
+      if (a[i] >= 0) {
+        missing = i + 1;
+        break;
+      }
+    }
+
+    return {missing, duplicate};
+}
+
 }  // namespace arrays
 }  // namespace puzzles
