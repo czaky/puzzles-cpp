@@ -1,7 +1,7 @@
 #include "search.h"
 
-#include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include "gtest/gtest.h"
 
 namespace puzzles {
 namespace search {
@@ -20,6 +20,5 @@ TEST(SearchTests, binary_search) {
   EXPECT_EQ(binary_search({2, 5, 10}, 7), -1);
 }
 
-
-}  // namespace search
-}  // namespace puzzles
+} // namespace search
+} // namespace puzzles

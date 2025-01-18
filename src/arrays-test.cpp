@@ -1,8 +1,7 @@
 #include "arrays.h"
 
-#include "gtest/gtest.h"
 #include "gmock/gmock.h"
-
+#include "gtest/gtest.h"
 
 namespace puzzles {
 namespace arrays {
@@ -37,10 +36,8 @@ TEST(ArraysTests, sort012) {
   EXPECT_THAT(_sort012({1, 2, 0, 1}), ElementsAre(0, 1, 1, 2));
   EXPECT_THAT(_sort012({2, 2, 1, 0}), ElementsAre(0, 1, 2, 2));
 
-
   EXPECT_THAT(_sort012({0, 0, 0, 0}), ElementsAre(0, 0, 0, 0));
   EXPECT_THAT(_sort012({2, 2, 2, 2}), ElementsAre(2, 2, 2, 2));
-
 
   EXPECT_THAT(_sort012({1, 0}), ElementsAre(0, 1));
   EXPECT_THAT(_sort012({2}), ElementsAre(2));
@@ -79,5 +76,5 @@ TEST(ArraysTests, _missing_and_repeating) {
   EXPECT_THAT(__missing_and_repeating({1, 1}), ElementsAre(2, 1));
 }
 
-}  // namespace arrays
-}  // namespace puzzles
+} // namespace arrays
+} // namespace puzzles

@@ -1,7 +1,7 @@
 #ifndef PUZZLES_SEARCH_H
 #define PUZZLES_SEARCH_H
 
-#include<vector>
+#include <vector>
 
 namespace puzzles {
 namespace search {
@@ -14,9 +14,9 @@ namespace search {
  *
  * @return the index of k or -1.
  */
-int binary_search(const std::vector<int>& a, int k);
+int binary_search(const std::vector<int> &a, int k);
 
-}  // namespace search
-}  // namespace puzzles
+} // namespace search
+} // namespace puzzles
 
-#endif  // PUZZLES_SEARCH_H
+#endif // PUZZLES_SEARCH_H
