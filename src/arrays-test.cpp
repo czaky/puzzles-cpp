@@ -76,5 +76,29 @@ TEST(ArraysTests, _missing_and_repeating) {
   EXPECT_THAT(__missing_and_repeating({1, 1}), ElementsAre(2, 1));
 }
 
+TEST(ArraysTests, equal_counts) {
+  EXPECT_TRUE(equal_counts({1, 1, 1}, {1, 1, 1}));
+  EXPECT_TRUE(equal_counts({2, 2}, {2, 2}));
+  EXPECT_TRUE(equal_counts({10}, {10}));
+
+  EXPECT_TRUE(equal_counts({1, 2, 3}, {1, 2, 3}));
+  EXPECT_TRUE(equal_counts({1, 2, 3}, {2, 3, 1}));
+
+  EXPECT_TRUE(equal_counts({1, 1, 2, 3}, {1, 2, 3, 1}));
+  EXPECT_TRUE(equal_counts({1, 2, 2, 3}, {2, 2, 3, 1}));
+}
+
+TEST(ArraysTests, equal_counts_false) {
+  EXPECT_FALSE(equal_counts({1, 1, 1}, {1, 1}));
+  EXPECT_FALSE(equal_counts({2, 2}, {2, 2, 2}));
+  EXPECT_FALSE(equal_counts({10}, {1, 0}));
+
+  EXPECT_FALSE(equal_counts({1, 2, 3, 3}, {1, 2, 3}));
+  EXPECT_FALSE(equal_counts({1, 2, 3}, {2, 3, 3, 1}));
+
+  EXPECT_FALSE(equal_counts({1, 1, 2, 3}, {1, 2, 3, 3}));
+  EXPECT_FALSE(equal_counts({1, 2, 2, 2}, {2, 2, 3, 1}));
+}
+
 } // namespace arrays
 } // namespace puzzles

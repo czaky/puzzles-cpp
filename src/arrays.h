@@ -16,6 +16,8 @@ void sort_dutch_flag(std::vector<int> &a);
 
 std::vector<int> missing_and_repeating(std::vector<int> &a);
 
+bool equal_counts(const std::vector<int> &a, const std::vector<int> &b);
+
 } // namespace arrays
 } // namespace puzzles
 

@@ -1,6 +1,7 @@
 #include "arrays.h"
 
 #include <algorithm>
+#include <unordered_map>
 #include <vector>
 
 namespace puzzles {
@@ -115,6 +116,27 @@ std::vector<int> missing_and_repeating(std::vector<int> &a) {
   }
 
   return {missing, duplicate};
+}
+
+template <typename T>
+std::unordered_map<int, int> counter(const std::vector<T> &a) {
+  std::unordered_map<T, int> as;
+  for (const T &e : a)
+    ++as[e];
+  return as;
+}
+
+/**
+ * @brief true if the arrays a and b have the same counts of equal elements.
+ *
+ * The order is not necessary. Implementation depends on an unordered_map.
+ *
+ * @param a vector of integers
+ * @param b vector of integers
+ * @return true if the elements have the same counts.
+ */
+bool equal_counts(const std::vector<int> &a, const std::vector<int> &b) {
+  return counter(a) == counter(b);
 }
 
 } // namespace arrays
