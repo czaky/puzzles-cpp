@@ -46,7 +46,9 @@ jobs:
         # Cache hash is dependent on CMakeLists files anywhere as these can change what's in the cache, as well as cmake modules files
         key: ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cc }}-${{ hashFiles('**/CMakeLists.txt', 'cmake/**') }}
 
-    - uses: Bacondish2023/setup-googletest@v1
+    - uses: Bacondish2023/setup-googletest@v1.0.1
+      with:
+        tag: v1.15.2
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
