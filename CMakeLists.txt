@@ -43,39 +43,31 @@ include(CTest)
 
 enable_testing()
 
-# This is for our testing framework,
-# we don't add REQUIRED because it's just for testing.
-# People who might want to build the project to use it should not be required
-# to install testing dependencies.
-find_package(GTest)
-find_package(GMock)
+find_package(GTest REQUIRED)
+find_package(GMock REQUIRED)
 
-if(GTEST_FOUND)
-  include(GoogleTest)
+include(GoogleTest)
 
+add_executable(unit_tests ${tests} ${sources})
 
-  add_executable(unit_tests ${tests} ${sources})
+# This define is added to prevent collision with the main.
+# It might be better solved by not adding the source with the main to the
+# testing target.
+target_compile_definitions(unit_tests PUBLIC UNIT_TESTS)
 
-  # This define is added to prevent collision with the main.
-  # It might be better solved by not adding the source with the main to the
-  # testing target.
-  target_compile_definitions(unit_tests PUBLIC UNIT_TESTS)
+# This allows us to use the executable as a link library, and inherit all
+# linker options and library dependencies from it, by simply adding it as dependency.
+# set_target_properties(puzzles PROPERTIES ENABLE_EXPORTS on)
 
-  # This allows us to use the executable as a link library, and inherit all
-  # linker options and library dependencies from it, by simply adding it as dependency.
-  # set_target_properties(puzzles PROPERTIES ENABLE_EXPORTS on)
+target_link_libraries(unit_tests PUBLIC
+  ${GTEST_LIBRARIES}
+  ${GMOCK_BOTH_LIBRARIES}
+  # puzzles
+)
 
-  target_link_libraries(unit_tests PUBLIC
-    ${GTEST_LIBRARIES}
-    ${GMOCK_BOTH_LIBRARIES}
-    # puzzles
-  )
+target_include_directories(unit_tests PUBLIC
+  ${GTEST_INCLUDE_DIRS}
+  ${GMOCK_INCLUDE_DIRS}
+)
 
-  target_include_directories(unit_tests PUBLIC
-    ${GTEST_INCLUDE_DIRS}
-    ${GMOCK_INCLUDE_DIRS}
-  )
-
-  gtest_discover_tests(unit_tests)
-
-endif()
+gtest_discover_tests(unit_tests)
