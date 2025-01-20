@@ -73,6 +73,7 @@ if(GTEST_FOUND)
 
   target_include_directories(unit_tests PUBLIC
     ${GTEST_INCLUDE_DIRS}
+    ${GMOCK_INCLUDE_DIRS}
   )
 
   gtest_discover_tests(unit_tests)

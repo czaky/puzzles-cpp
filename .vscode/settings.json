@@ -4,7 +4,7 @@
   ],
   "[cpp]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
+      "source.fixAll": "explicit"
     },
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
