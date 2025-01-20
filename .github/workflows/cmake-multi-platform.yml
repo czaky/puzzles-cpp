@@ -48,7 +48,7 @@ jobs:
 
     - name: Install GTests and GMock
       run: |
-        sudo apt-get install -y googletest google-mock
+        sudo apt-get install -y googletest google-mock libgmock-dev libgtest-dev
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
