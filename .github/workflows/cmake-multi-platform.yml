@@ -42,13 +42,21 @@ jobs:
       env:
         cache-name: cache-cmake-dependency-builds
       with:
-        path: ${{github.workspace}}/build/
-        # Cache hash is dependent on CMakeLists files anywhere as these can change what's in the cache, as well as cmake modules files
-        key: ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cc }}-${{ hashFiles('**/CMakeLists.txt', 'cmake/**') }}
+        path: /var/cache/apt
+        key: ${{ env.cache-name }}-${{ matrix.os }}
 
     - name: Install GTests and GMock
       run: |
-        sudo apt install -y googletest libgtest-dev cmake-extras google-mock libgmock-dev
+          sudo apt install -y googletest libgtest-dev cmake-extras google-mock libgmock-dev
+
+    - name: Cache CMake build
+      uses: actions/cache@v4
+      env:
+        cache-name: cache-cmake-dependency-builds
+      with:
+        path: ${{github.workspace}}/build/
+        # Cache hash is dependent on CMakeLists files anywhere as these can change what's in the cache, as well as cmake modules files
+        key: ${{ env.cache-name }}-${{ matrix.os }}-${{ matrix.cc }}-${{ hashFiles('**/CMakeLists.txt', 'cmake/**') }}
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
