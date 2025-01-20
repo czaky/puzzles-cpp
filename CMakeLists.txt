@@ -66,7 +66,8 @@ if(GTEST_FOUND)
   # set_target_properties(puzzles PROPERTIES ENABLE_EXPORTS on)
 
   target_link_libraries(unit_tests PUBLIC
-    ${GTEST_BOTH_LIBRARIES}
+    ${GTEST_LIBRARIES}
+    ${GMOCK_BOTH_LIBRARIES}
     # puzzles
   )
 

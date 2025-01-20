@@ -20,5 +20,17 @@ TEST(SearchTests, binary_search) {
   EXPECT_EQ(binary_search({2, 5, 10}, 7), -1);
 }
 
+TEST(SearchTests, find_paths) {
+  std::vector<std::vector<int>> maze = {{1, 1, 1, 0, 1},
+                                        {1, 0, 1, 1, 1},
+                                        {0, 0, 1, 1, 1},
+                                        {1, 0, 0, 1, 1},
+                                        {1, 0, 0, 0, 1}};
+  EXPECT_THAT(find_paths(maze),
+              UnorderedElementsAre("RRDDRDRD", "RRDDRRDD", "RRDDRURDDD",
+                                   "RRDRDDRD", "RRDRDRDD", "RRDRRDDD",
+                                   "RRDRRDLDRD"));
+}
+
 } // namespace search
 } // namespace puzzles
