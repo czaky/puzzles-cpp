@@ -52,8 +52,8 @@ jobs:
         cd googletest
         mkdir build && cd build
         cmake .. -DBUILD_SHARED_LIBS=ON -DINSTALL_GTEST=ON -DCMAKE_INSTALL_PREFIX:PATH=/usr
-        make -j8
-        sudo make install
+        cmake --build .
+        sudo cmake --install .
         sudo ldconfig
 
     - name: Set reusable strings
