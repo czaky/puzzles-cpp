@@ -43,8 +43,8 @@ include(CTest)
 
 enable_testing()
 
-find_package(GTest REQUIRED CONFIG)
-find_package(GMock)
+find_package(GTest REQUIRED)
+find_package(GMock REQUIRED)
 
 include(GoogleTest)
 
