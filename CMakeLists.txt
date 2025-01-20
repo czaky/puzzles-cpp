@@ -44,7 +44,7 @@ include(CTest)
 enable_testing()
 
 find_package(GTest REQUIRED)
-find_package(GMock REQUIRED)
+find_package(GMock)
 
 include(GoogleTest)
 
@@ -60,8 +60,8 @@ target_compile_definitions(unit_tests PUBLIC UNIT_TESTS)
 # set_target_properties(puzzles PROPERTIES ENABLE_EXPORTS on)
 
 target_link_libraries(unit_tests PUBLIC
-  ${GTEST_LIBRARIES}
-  ${GMOCK_BOTH_LIBRARIES}
+  ${GTEST_BOTH_LIBRARIES}
+  ${GMOCK_LIBRARIES}
   # puzzles
 )
 
