@@ -54,7 +54,8 @@ jobs:
       run: |
         sudo apt-get install libgmock-dev
         cd /usr/src/googletest/googlemock/
-        sudo cmake --build ./build ..
+        sudo cmake ..
+        sudo cmake --build ./build
         sudo cmake --install ..
 
     - name: Set reusable strings
