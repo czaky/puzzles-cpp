@@ -54,6 +54,7 @@ jobs:
       run: |
         sudo apt-get install libgmock-dev
         cd /usr/src/googletest/googlemock/
+        sudo mkdir -p ./build
         sudo cmake ..
         sudo cmake --build ./build
         sudo cmake --install ..
