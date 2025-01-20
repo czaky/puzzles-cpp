@@ -48,7 +48,13 @@ jobs:
 
     - name: Install GTests and GMock
       run: |
-        sudo apt-get install -y googletest google-mock libgmock-dev libgtest-dev
+        git clone https://github.com/google/googletest.git
+        cd googletest
+        mkdir build && cd build
+        cmake .. -DBUILD_SHARED_LIBS=ON -DINSTALL_GTEST=ON -DCMAKE_INSTALL_PREFIX:PATH=/usr
+        make -j8
+        sudo make install
+        sudo ldconfig
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
