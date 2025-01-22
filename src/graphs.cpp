@@ -1,6 +1,8 @@
 #include "graphs.h"
 
 #include <algorithm>
+#include <cassert>
+#include <functional>
 #include <iostream>
 #include <set>
 #include <unordered_set>
@@ -91,6 +93,30 @@ std::set<int> critical_points(const std::vector<std::vector<int>> &a) {
     ct[p] = std::min(ct[p], ct[n]);
   }
 
+  return critical;
+}
+
+std::set<std::pair<int, int>>
+critical_connections(const std::vector<std::vector<int>>& a) {
+  std::vector<int> ct(a.size(), 0);
+  std::set<std::pair<int, int>> critical;
+
+  std::function<int(int, int, int)> dfs = [&](int p, int n, const int t) {
+    if (ct[n] == 0) {
+      ct[n] = t;
+      for (int c : a[n]) {
+        if (c != p) {
+          ct[n] = std::min(ct[n], dfs(n, c, t + 1));
+          if (ct[c] > t) {
+            critical.insert({std::min(n, c), std::max(n, c)});
+          }
+        }
+      }
+    }
+    return ct[n];
+  };
+
+  dfs(-1, 0, 1);
   return critical;
 }
 

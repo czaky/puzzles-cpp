@@ -54,5 +54,32 @@ TEST(GraphsTests, CriticalPoints) {
   EXPECT_THAT(critical_points(adj), ElementsAre(6));
 }
 
+TEST(GraphsTests, CriticalConnections1) {
+  std::vector<std::vector<int>> adj = {{1, 2}, {0}, {0}};
+  std::set<std::pair<int, int>> con = {{0, 1}, {0, 2}};
+  EXPECT_EQ(critical_connections(adj), con);
+}
+
+TEST(GraphsTests, CriticalConnections2) {
+  std::vector<std::vector<int>> adj = {{1}, {2, 0}, {1, 4, 3}, {2, 4}, {3, 2}};
+  std::set<std::pair<int, int>> con = {{0, 1}, {1, 2}};
+  EXPECT_EQ(critical_connections(adj), con);
+}
+
+TEST(GraphsTests, CriticalConnections3) {
+  std::vector<std::vector<int>> adj = {{1, 2}, {0, 2}, {0, 1, 3}, {2}};
+  std::set<std::pair<int, int>> con = {{2, 3}};
+  EXPECT_EQ(critical_connections(adj), con);
+}
+
+TEST(GraphsTests, CriticalConnections4) {
+  std::vector<std::vector<int>> adj = {
+      {6, 5, 4}, {8, 5},       {6, 7}, {5},       {8, 0},
+      {0, 3, 1}, {0, 8, 7, 2}, {6, 2}, {6, 4, 1},
+  };
+  std::set<std::pair<int, int>> con = {{3, 5}};
+  EXPECT_EQ(critical_connections(adj), con);
+}
+
 } // namespace graphs
 } // namespace puzzles
