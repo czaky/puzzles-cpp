@@ -56,18 +56,15 @@ ListNode* mergeKLists(std::vector<ListNode*>& lists) {
 
   ListNode* head = pq.top();
   ListNode* tail = head;
-  pq.pop();
-  if (tail->next) {
-    pq.push(tail->next);
-  }
 
-  while (!pq.empty()) {
-    tail = tail->next = pq.top();
+  do {
     pq.pop();
     if (tail->next) {
       pq.push(tail->next);
     }
-  }
+    tail = tail->next = pq.top();
+  } while (!pq.empty());
+
   tail->next = nullptr;
   return head;
 }
