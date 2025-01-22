@@ -44,26 +44,26 @@ struct Greater {
 
 ListNode* mergeKLists(std::vector<ListNode*>& lists) {
   // min heap
-  std::priority_queue<ListNode*, std::vector<ListNode*>, Greater> pq;
+  std::priority_queue<ListNode*, std::vector<ListNode*>, Greater> h;
 
   for (auto list : lists) {
     if (list) {
-      pq.push(list);
+      h.push(list);
     }
   }
-  if (pq.empty())
+  if (h.empty())
     return nullptr;
 
-  ListNode* head = pq.top();
+  ListNode* head = h.top();
   ListNode* tail = head;
 
   do {
-    pq.pop();
+    h.pop();
     if (tail->next) {
-      pq.push(tail->next);
+      h.push(tail->next);
     }
-    tail = tail->next = pq.top();
-  } while (!pq.empty());
+    tail = tail->next = h.top();
+  } while (!h.empty());
 
   tail->next = nullptr;
   return head;
